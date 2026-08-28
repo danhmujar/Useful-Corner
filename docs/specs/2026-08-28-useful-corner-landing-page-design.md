@@ -1,6 +1,6 @@
 # The Useful Corner — Landing Page Design Specification
 
-Status: Draft for user review  
+Status: Historical design reference; implementation completed
 Date: 2026-08-28  
 Target project: `C:\AI\Project\Useful-Corner`  
 Reference mockup: `outputs/useful-corner-mockup.html`
@@ -243,4 +243,3 @@ At each size, verify header fit, hero composition, spotlight order, orb density,
 - Deployment host: GitHub Pages or Vercel.
 - Final public URL and repository name.
 - Whether a social-preview image is required before deployment.
-

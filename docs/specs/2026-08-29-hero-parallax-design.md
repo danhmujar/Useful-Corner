@@ -1,7 +1,9 @@
 # Hero Parallax Motion Pass
 
-Status: Approved for implementation
+Status: Superseded by implemented reveal motion
 Date: 2026-08-29
+
+The parallax exploration below was replaced during implementation with intersection-triggered slide/fade reveals for the hero and app spotlights. The active behavior is documented in the root README and `AGENTS.md`.
 
 ## Purpose
 

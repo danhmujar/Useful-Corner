@@ -1,6 +1,6 @@
 # The Useful Corner — Implementation Plan
 
-Status: Draft for user review; do not execute  
+Status: Historical implementation plan; completed locally
 Date: 2026-08-28  
 Source specification: `docs/specs/2026-08-28-useful-corner-landing-page-design.md`
 

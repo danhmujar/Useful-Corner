@@ -1,16 +1,60 @@
-# React + Vite
+# The Useful Corner
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The Useful Corner is a lightweight React/Vite landing page for three independent browser tools:
 
-Currently, two official plugins are available:
+- PDF Unlocker
+- Calculator
+- Text & Markdown Formatter
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+It provides a single navigable home page with live app previews, direct “Open app” links, responsive spotlight sections, and a continuous ambient light field.
 
-## React Compiler
+## Run locally
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the Oxlint configuration
+For a production-style local preview:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+npm run build
+npm run preview -- --host 127.0.0.1
+```
+
+## Quality checks
+
+```bash
+npm run build
+npm run lint
+```
+
+## Project structure
+
+```text
+src/
+  components/       React page sections and motion behavior
+  data/             App destinations and spotlight copy
+  styles/           Design tokens and global/component CSS
+public/app-icons/   Local app identity assets
+assets/             Original mockup assets
+docs/               Specifications, plans, and task history
+```
+
+## Interaction and motion
+
+- The hero and each app spotlight hold blank for 250ms, then reveal with a restrained slide/fade stagger when entering the viewport.
+- Reveals replay when a section leaves and re-enters the viewport.
+- A soft cursor-centered purple light follows fine-pointer movement across the page.
+- Ambient background orbs drift continuously and respond subtly to the pointer.
+- Touch/coarse-pointer devices and `prefers-reduced-motion` receive a static, usable composition.
+- Live previews remain interactive cross-origin iframes, with external links as the fallback action.
+
+## Typography
+
+- Sora: display headings and brand text
+- Source Sans 3: general body copy
+- DM Sans: supporting copy, controls, and tooltips
+- IBM Plex Mono: labels and eyebrow text
+
+See [docs/INDEX.md](docs/INDEX.md) for the documentation index and [AGENTS.md](AGENTS.md) for contribution guidance.
