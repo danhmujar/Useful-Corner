@@ -1,0 +1,1 @@
+export function Footer() { return <footer className="site-footer"><p className="footer-title">The Useful Corner</p><p>A personal collection of independent web tools for getting unstuck.</p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></footer> }
