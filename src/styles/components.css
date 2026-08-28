@@ -24,3 +24,4 @@
 @keyframes spotlight-frame-in-reverse { from { opacity:0; transform:translate3d(24px,0,0); } to { opacity:1; transform:translate3d(0,0,0); } }
 @media (prefers-reduced-motion:reduce) { .spotlight--pending .spotlight-inner > * { opacity:1; transform:none; will-change:auto; } .spotlight.is-visible .app-frame,.spotlight.is-visible .spotlight-copy > * { animation:none; } }
 .tooltip { font-family:var(--support); font-weight:500; }
+.site-footer p:not(.footer-title),.site-footer a { font-family:var(--support); }
