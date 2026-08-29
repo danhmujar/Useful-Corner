@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/Useful-Corner/',
+export default defineConfig(({ command, mode }) => ({
+  base: mode === 'preview' || command === 'serve' ? '/' : '/Useful-Corner/',
   plugins: [react()],
-})
+}))

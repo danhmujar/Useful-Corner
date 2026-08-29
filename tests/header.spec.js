@@ -42,6 +42,13 @@ test.describe('Header navigation', () => {
     expect(aboutIndex).toBeGreaterThan(navIndex)
   })
 
+  test('local development loads header icon assets', async ({ page }) => {
+    const brokenIcons = await page.locator('.icon-link img').evaluateAll((images) => images
+      .filter((image) => image.naturalWidth === 0)
+      .map((image) => image.currentSrc || image.src))
+    expect(brokenIcons).toEqual([])
+  })
+
   test('all header controls meet 44px hit area', async ({ page }) => {
     for (const locator of [page.locator('.icon-link'), page.getByRole('button', { name: 'About', exact: true })]) {
       const count = await locator.count()

@@ -51,8 +51,8 @@ export function AmbientOrbField() {
         const current = cursorPosition.current
         const targetX = hasPointer.current && !isSuppressed.current ? pointer.current.x : current.x
         const targetY = hasPointer.current && !isSuppressed.current ? pointer.current.y : current.y
-        current.x += (targetX - current.x) * 0.12
-        current.y += (targetY - current.y) * 0.12
+        current.x += (targetX - current.x) * 0.35
+        current.y += (targetY - current.y) * 0.35
         cursorOrb.style.opacity = hasPointer.current && !isSuppressed.current ? '1' : '0'
         cursorOrb.style.transform = `translate3d(${current.x}px, ${current.y}px, 0) translate(-50%, -50%)`
       }
