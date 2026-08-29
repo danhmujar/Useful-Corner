@@ -29,6 +29,26 @@ test.describe('Spotlights and previews', () => {
     }
   })
 
+  test('hero composition fits desktop viewports', async ({ page }) => {
+    for (const viewport of [{ width: 1280, height: 700 }, { width: 2560, height: 1250 }]) {
+      await page.setViewportSize(viewport)
+      await page.reload()
+      await expect(page.locator('.hero')).toHaveClass(/is-visible/, { timeout: 2000 })
+      await page.waitForTimeout(900)
+      const bounds = await page.locator('.hero').evaluate((hero) => {
+        const elements = [hero, hero.querySelector('.hero-copy'), hero.querySelector('.hero-art'), hero.querySelector('.hero-art p')]
+        return elements.map((element) => {
+          const rect = element.getBoundingClientRect()
+          return { top: rect.top, bottom: rect.bottom, right: rect.right }
+        })
+      })
+      for (const element of bounds) {
+        expect(element.top).toBeGreaterThanOrEqual(-1)
+        expect(element.bottom).toBeLessThanOrEqual(viewport.height + 1)
+        expect(element.right).toBeLessThanOrEqual(viewport.width + 1)
+      }
+    }
+  })
   test('hero and spotlight reveal replay on intersection', async ({ page }) => {
     const hero = page.locator('.hero')
     await expect(hero).toBeVisible()

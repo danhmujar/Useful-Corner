@@ -85,6 +85,12 @@
   object-fit: contain;
 }
 
+.icon-link.is-active {
+  border-color: var(--purple);
+  background: rgba(127, 53, 178, 0.1);
+  box-shadow: inset 0 -3px 0 var(--magenta);
+}
+
 .tooltip {
   position: absolute;
   top: calc(100% + 6px);
@@ -154,7 +160,8 @@
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
-  min-height: min(650px, calc(100svh - var(--header-height)));
+  height: clamp(500px, calc(100svh - var(--header-height)), 920px);
+  min-height: 0;
   background: var(--white);
 }
 
@@ -164,7 +171,7 @@
   justify-content: center;
   width: min(540px, calc(100% - 48px));
   margin-inline: max(24px, calc((100vw - 1180px) / 2));
-  padding-block: 96px;
+  padding-block: clamp(28px, 7svh, 96px);
   opacity: 0;
   transform: translate3d(0, 16px, 0);
 }
@@ -184,7 +191,7 @@
   margin: 18px 0 20px;
   color: var(--aubergine);
   font-family: var(--display);
-  font-size: clamp(3.3rem, 6.2vw, 6.5rem);
+  font-size: clamp(3rem, min(6.2vw, 11svh), 6.5rem);
   font-weight: 700;
   line-height: 0.94;
   letter-spacing: -0.065em;
@@ -194,13 +201,13 @@
   max-width: 38ch;
   color: var(--secondary);
   font-family: var(--support);
-  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  font-size: clamp(1.05rem, min(1.7vw, 2.6svh), 1.35rem);
   line-height: 1.5;
 }
 
 .text-link {
   width: fit-content;
-  margin-top: 32px;
+  margin-top: clamp(20px, 3.2svh, 32px);
   color: var(--aubergine);
   font-family: var(--support);
   font-weight: 700;
@@ -211,7 +218,7 @@
 .hero-art {
   position: relative;
   overflow: hidden;
-  min-height: 420px;
+  min-height: 0;
   color: var(--white);
   background: rgba(72, 8, 111, 0.9);
   opacity: 0;
@@ -223,11 +230,11 @@
   position: absolute;
   z-index: 1;
   right: max(48px, calc((100vw - 1180px) / 2));
-  bottom: 78px;
+  bottom: clamp(32px, 7svh, 78px);
   margin: 0;
   color: rgba(255, 255, 255, 0.8);
   font-family: var(--display);
-  font-size: clamp(1.7rem, 3vw, 3.2rem);
+  font-size: clamp(1.7rem, min(3vw, 5.4svh), 3.2rem);
   line-height: 0.96;
   letter-spacing: -0.05em;
   opacity: 0;
@@ -240,6 +247,7 @@
   right: -3px;
   bottom: -3px;
   width: min(38vw, 430px);
+  max-width: 42%;
   aspect-ratio: 1;
   background: var(--magenta);
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
@@ -911,6 +919,7 @@
 
 @media (max-width: 760px) {
   .hero {
+    height: auto;
     grid-template-columns: 1fr;
   }
 

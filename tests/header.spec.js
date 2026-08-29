@@ -49,6 +49,25 @@ test.describe('Header navigation', () => {
     expect(brokenIcons).toEqual([])
   })
 
+  test('clicked and visible app icons expose the active state', async ({ page }) => {
+    const icons = page.locator('.icon-link')
+    const first = icons.nth(0)
+    const second = icons.nth(1)
+
+    await first.click()
+    await expect(first).toHaveClass(/is-active/)
+    await expect(first).toHaveAttribute('aria-current', 'location')
+
+    await second.click()
+    await expect(second).toHaveClass(/is-active/)
+    await expect(second).toHaveAttribute('aria-current', 'location')
+    await expect(first).not.toHaveClass(/is-active/)
+    await expect(first).not.toHaveAttribute('aria-current', 'location')
+
+    await page.locator('#formatter').evaluate((element) => element.scrollIntoView({ block: 'start' }))
+    await expect(icons.nth(2)).toHaveAttribute('aria-current', 'location')
+    await expect(second).not.toHaveClass(/is-active/)
+  })
   test('all header controls meet 44px hit area', async ({ page }) => {
     for (const locator of [page.locator('.icon-link'), page.getByRole('button', { name: 'About', exact: true })]) {
       const count = await locator.count()
