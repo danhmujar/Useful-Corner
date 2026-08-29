@@ -36,6 +36,15 @@ To smoke-test the built bundle (including cross-origin previews under the CSP):
 npm run test:e2e:prod
 ```
 
+## GitHub Pages deployment
+
+The repository workflow publishes the production build to
+https://danhmujar.github.io/Useful-Corner/ when changes land on `main`.
+
+The Vite base path is set to `/Useful-Corner/` for this repository site. If a custom domain is added later, change the base back to `/`.
+
+GitHub Pages is configured to use GitHub Actions as its publishing source.
+
 ## Project structure
 
 ```text
