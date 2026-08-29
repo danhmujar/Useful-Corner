@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview",
+    "build:preview": "vite build --mode preview",
+    "preview": "npm run build:preview && vite preview",
     "test:e2e": "playwright test",
     "test:e2e:prod": "npm run build -- --mode preview && playwright test --config=playwright.production.config.js",
     "test:e2e:ui": "playwright test --ui"

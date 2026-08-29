@@ -26,3 +26,6 @@ dist-ssr
 # Browser test output
 playwright-report/
 test-results/
+
+# Local maintenance scripts
+fix-codex-git-permissions.bat
