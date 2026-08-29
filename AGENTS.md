@@ -10,6 +10,8 @@ This repository contains the Useful Corner React/Vite landing page. It is a navi
 - `npm run build` creates the production bundle in `dist/`.
 - `npm run preview -- --host 127.0.0.1` serves the production bundle locally.
 - `npm run lint` runs Oxlint.
+- `npm run test:e2e` runs the Playwright and axe browser checks.
+- `npm run test:e2e:prod` builds the bundle and runs the same checks against Vite preview.
 
 Run `npm run build` and `npm run lint` after source or styling changes.
 
@@ -18,7 +20,6 @@ Run `npm run build` and `npm run lint` after source or styling changes.
 - `src/App.jsx` composes the page shell, ambient field, header, hero, spotlights, and footer.
 - `src/data/apps.js` is the single source for app IDs, URLs, copy, accent themes, and icons.
 - `src/components/Header.jsx` renders the icon navigation and hover tooltips.
-- `src/components/AboutCorner.jsx` renders the header About control and accessible modal.
 - `src/components/AboutCorner.jsx` renders the header About control and accessible modal.
 - `src/components/Hero.jsx` owns hero copy/art markup and its intersection-triggered reveal lifecycle.
 - `src/components/AppSpotlight.jsx` owns reusable live-preview sections and per-section reveal timing.
@@ -43,7 +44,6 @@ Run `npm run build` and `npm run lint` after source or styling changes.
 - Clean up observers, timers, event listeners, and animation frames on unmount.
 - Keep `pointer-events: none` on decorative orb layers.
 - Disable cursor-following motion for coarse pointers and reduced-motion preferences.
-- Keep the About control after the three app icons; render its modal at the document viewport via a body portal.
 - The About control sits after the three app icons in the header; keep its modal centered at the document viewport via a body portal.
 
 ## Documentation

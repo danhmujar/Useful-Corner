@@ -18,4 +18,8 @@
 - [Hero motion plan](plans/2026-08-29-hero-parallax-plan.md)
 - [Original task list](tasks/2026-08-28-useful-corner-task-list.md)
 
+## Audits
+
+- [Five-pillar audit](audits/2026-08-29-five-pillar-audit.md) — verified security, performance, reliability, maintainability, and accessibility/UX findings.
+
 The specs and plans preserve the decisions and explorations that led to the current implementation. When a document conflicts with the shipped source, the root README, `AGENTS.md`, and current source code describe the active behavior.

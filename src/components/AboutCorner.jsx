@@ -11,6 +11,12 @@ export function AboutCorner() {
     if (!open) return undefined
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
+    const shell = document.querySelector('.site-shell')
+    const hadInert = shell?.hasAttribute('inert')
+    if (shell) {
+      shell.setAttribute('inert', '')
+      shell.inert = true
+    }
     const timer = window.setTimeout(() => closeRef.current?.focus(), 50)
     const onKeyDown = (event) => {
       if (event.key === 'Escape') { setOpen(false); window.setTimeout(() => triggerRef.current?.focus(), 0) }
@@ -23,7 +29,15 @@ export function AboutCorner() {
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
     }
     document.addEventListener('keydown', onKeyDown)
-    return () => { window.clearTimeout(timer); document.body.style.overflow = previousOverflow; document.removeEventListener('keydown', onKeyDown) }
+    return () => {
+      window.clearTimeout(timer)
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', onKeyDown)
+      if (shell && !hadInert) {
+        shell.removeAttribute('inert')
+        shell.inert = false
+      }
+    }
   }, [open])
 
   const close = () => { setOpen(false); window.setTimeout(() => triggerRef.current?.focus(), 0) }
@@ -36,6 +50,7 @@ export function AboutCorner() {
         <p className="about-dialog__intro">Three independent browser tools for the fiddly jobs that interrupt a good day.</p>
         <div className="about-dialog__grid">
           <div><h3>In the corner</h3><ul><li>PDF Unlocker</li><li>Percentage Calculator</li><li>Text &amp; Markdown Formatter</li></ul></div>
+          <div><h3>Tech stack</h3><ul><li>React + Vite</li><li>Responsive CSS</li><li>Lazy-loaded live previews</li><li>Static client-side hosting</li></ul></div>
           <div><h3>Privacy &amp; architecture</h3><ul><li>100% client-side tools</li><li>Files stay on your device</li><li>No account or cloud upload</li><li>Independent deployments</li></ul></div>
           <div><h3>Features</h3><ul><li>Live app previews</li><li>Responsive layouts</li><li>Keyboard-friendly controls</li><li>Thoughtful motion and focus states</li></ul></div>
           <div><h3>Limitations</h3><ul><li>Each tool has its own feature scope</li><li>No shared account or cloud sync</li><li>External tools may change independently</li></ul></div>

@@ -12,9 +12,22 @@ export function AmbientOrbField() {
   const hasPointer = useRef(false)
   const isSuppressed = useRef(false)
   const offsets = useRef(orbs.map(() => ({ x: 0, y: 0 })))
+  const orbCenters = useRef(orbs.map(() => ({ x: 0, y: 0 })))
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(pointer: fine)').matches) return undefined
     let frameId
+    const updateCenters = () => {
+      orbRefs.current.forEach((element, index) => {
+        if (!element) return
+        const rect = element.getBoundingClientRect()
+        const offset = offsets.current[index]
+        orbCenters.current[index] = {
+          x: rect.left + rect.width / 2 - offset.x,
+          y: rect.top + rect.height / 2 - offset.y,
+        }
+      })
+    }
+    updateCenters()
     const onPointerMove = (event) => {
       if (!hasPointer.current) cursorPosition.current = { x: event.clientX, y: event.clientY }
       pointer.current = { x: event.clientX, y: event.clientY }
@@ -31,6 +44,7 @@ export function AmbientOrbField() {
     const onPreviewLeave = () => {
       isSuppressed.current = false
     }
+    const onResize = () => updateCenters()
     const update = () => {
       const cursorOrb = cursorOrbRef.current
       if (cursorOrb) {
@@ -44,10 +58,11 @@ export function AmbientOrbField() {
       }
       orbRefs.current.forEach((element, index) => {
         if (!element) return
-        const rect = element.getBoundingClientRect()
+        const base = orbCenters.current[index]
+        if (!base) return
         const current = offsets.current[index]
-        const dx = rect.left + rect.width / 2 - current.x - pointer.current.x
-        const dy = rect.top + rect.height / 2 - current.y - pointer.current.y
+        const dx = base.x - pointer.current.x
+        const dy = base.y - pointer.current.y
         const distance = Math.hypot(dx, dy)
         const strength = distance < 230 ? (1 - distance / 230) * 42 : 0
         const targetX = distance && strength ? (dx / distance) * strength : 0
@@ -60,6 +75,7 @@ export function AmbientOrbField() {
     }
     window.addEventListener('pointermove', onPointerMove, { passive: true })
     window.addEventListener('mouseleave', onPointerLeave)
+    window.addEventListener('resize', onResize)
     const previews = document.querySelectorAll('.app-frame__preview')
     previews.forEach((preview) => {
       preview.addEventListener('pointerenter', onPreviewEnter)
@@ -70,6 +86,7 @@ export function AmbientOrbField() {
       window.cancelAnimationFrame(frameId)
       window.removeEventListener('pointermove', onPointerMove)
       window.removeEventListener('mouseleave', onPointerLeave)
+      window.removeEventListener('resize', onResize)
       previews.forEach((preview) => {
         preview.removeEventListener('pointerenter', onPreviewEnter)
         preview.removeEventListener('pointerleave', onPreviewLeave)

@@ -27,6 +27,13 @@ npm run preview -- --host 127.0.0.1
 ```bash
 npm run build
 npm run lint
+npm run test:e2e
+```
+
+To smoke-test the built bundle (including cross-origin previews under the CSP):
+
+```bash
+npm run test:e2e:prod
 ```
 
 ## Project structure
@@ -45,8 +52,6 @@ docs/               Specifications, plans, and task history
 
 - The hero and each app spotlight hold blank for 250ms, then reveal with a restrained slide/fade stagger when entering the viewport.
 - Reveals replay when a section leaves and re-enters the viewport.
-- A soft cursor-centered magenta light follows fine-pointer movement across the page and hides over live previews or outside the webpage.
-- An `About` control sits after the app icons in the header and opens an accessible modal with the tools, tech stack, privacy model, features, limitations, and developer credit.
 - A soft cursor-centered magenta light follows fine-pointer movement across the page and hides over live previews or outside the webpage.
 - An `About` control sits after the app icons in the header and opens an accessible modal with the tools, tech stack, privacy model, features, limitations, and developer credit.
 - Ambient background orbs drift continuously and respond subtly to the pointer.
