@@ -45,7 +45,10 @@ docs/               Specifications, plans, and task history
 
 - The hero and each app spotlight hold blank for 250ms, then reveal with a restrained slide/fade stagger when entering the viewport.
 - Reveals replay when a section leaves and re-enters the viewport.
-- A soft cursor-centered purple light follows fine-pointer movement across the page.
+- A soft cursor-centered magenta light follows fine-pointer movement across the page and hides over live previews or outside the webpage.
+- An `About` control sits after the app icons in the header and opens an accessible modal with the tools, tech stack, privacy model, features, limitations, and developer credit.
+- A soft cursor-centered magenta light follows fine-pointer movement across the page and hides over live previews or outside the webpage.
+- An `About` control sits after the app icons in the header and opens an accessible modal with the tools, tech stack, privacy model, features, limitations, and developer credit.
 - Ambient background orbs drift continuously and respond subtly to the pointer.
 - Touch/coarse-pointer devices and `prefers-reduced-motion` receive a static, usable composition.
 - Live previews remain interactive cross-origin iframes, with external links as the fallback action.

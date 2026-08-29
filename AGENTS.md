@@ -18,6 +18,8 @@ Run `npm run build` and `npm run lint` after source or styling changes.
 - `src/App.jsx` composes the page shell, ambient field, header, hero, spotlights, and footer.
 - `src/data/apps.js` is the single source for app IDs, URLs, copy, accent themes, and icons.
 - `src/components/Header.jsx` renders the icon navigation and hover tooltips.
+- `src/components/AboutCorner.jsx` renders the header About control and accessible modal.
+- `src/components/AboutCorner.jsx` renders the header About control and accessible modal.
 - `src/components/Hero.jsx` owns hero copy/art markup and its intersection-triggered reveal lifecycle.
 - `src/components/AppSpotlight.jsx` owns reusable live-preview sections and per-section reveal timing.
 - `src/components/AmbientOrbField.jsx` owns drifting background orbs and the cursor-following light.
@@ -41,6 +43,8 @@ Run `npm run build` and `npm run lint` after source or styling changes.
 - Clean up observers, timers, event listeners, and animation frames on unmount.
 - Keep `pointer-events: none` on decorative orb layers.
 - Disable cursor-following motion for coarse pointers and reduced-motion preferences.
+- Keep the About control after the three app icons; render its modal at the document viewport via a body portal.
+- The About control sits after the three app icons in the header; keep its modal centered at the document viewport via a body portal.
 
 ## Documentation
 
