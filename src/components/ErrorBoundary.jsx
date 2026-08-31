@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component {
         <div className="error-fallback" role="alert">
           <h1>Something went wrong.</h1>
           <p>The page failed to load, but you can still open the tools directly:</p>
-          <ul>{apps.map((app) => <li key={app.id}><a href={app.href} target="_blank" rel="noopener noreferrer">Open {app.name}</a></li>)}</ul>
+          <ul>{apps.map((app) => <li key={app.id}>{app.status === 'coming-soon' ? <span>{app.name} (coming soon)</span> : <a href={app.href} target="_blank" rel="noopener noreferrer">Open {app.name}</a>}</li>)}</ul>
           <button type="button" onClick={() => window.location.reload()}>
             Reload page
           </button>

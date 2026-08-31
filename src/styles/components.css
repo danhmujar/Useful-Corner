@@ -85,6 +85,19 @@
   object-fit: contain;
 }
 
+.icon-link__coming-soon {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 2px solid var(--purple);
+  color: var(--aubergine);
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .icon-link.is-active {
   border-color: var(--purple);
   background: rgba(127, 53, 178, 0.1);
@@ -338,6 +351,73 @@
   background: var(--white);
 }
 
+.app-frame__teaser {
+  position: absolute;
+  inset: -14px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(72, 8, 111, 0.86), rgba(209, 36, 184, 0.58)),
+    var(--aubergine);
+  filter: blur(12px);
+  opacity: 0.78;
+  transform: scale(1.04);
+}
+
+.app-frame__teaser-question {
+  color: rgba(255, 255, 255, 0.82);
+  font-family: var(--display);
+  font-size: clamp(5rem, 12vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.app-frame__teaser-line {
+  position: absolute;
+  left: 14%;
+  height: 9%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.app-frame__teaser-line--one {
+  top: 17%;
+  width: 43%;
+}
+
+.app-frame__teaser-line--two {
+  right: 15%;
+  bottom: 24%;
+  left: auto;
+  width: 29%;
+}
+
+.app-frame__teaser-line--three {
+  bottom: 13%;
+  width: 54%;
+}
+
+.app-frame__coming-soon {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(72, 8, 111, 0.86);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0 rgba(209, 36, 184, 0.72);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
 .frame-corner {
   position: absolute;
   z-index: 3;
@@ -428,6 +508,18 @@
 .app-button:hover {
   transform: translate(3px, 3px);
   box-shadow: 2px 2px 0 var(--magenta);
+}
+
+.app-button--disabled {
+  cursor: default;
+  opacity: 0.68;
+  box-shadow: 3px 3px 0 rgba(209, 36, 184, 0.55);
+}
+
+.spotlight--coming-soon .spotlight-copy > :not(.app-button--disabled) {
+  filter: blur(7px);
+  opacity: 0.55;
+  user-select: none;
 }
 
 /* Footer */
