@@ -6,7 +6,7 @@ test.describe('Spotlights and previews', () => {
     await page.goto('/')
   })
 
-  test('spotlights render with metadata, lazy iframes, and safe links', async ({ page }) => {
+  test('spotlights render available previews and coming-soon states', async ({ page }) => {
     const spotlights = page.locator('.spotlight')
     await expect(spotlights).toHaveCount(apps.length)
 
@@ -17,15 +17,22 @@ test.describe('Spotlights and previews', () => {
       await expect(spotlight.locator('.eyebrow')).toHaveText(apps[i].eyebrow)
 
       const frame = spotlight.locator('.app-frame__preview')
-      await expect(frame).toHaveAttribute('loading', 'lazy')
-      await expect(frame).toHaveAttribute('referrerPolicy', 'strict-origin-when-cross-origin')
-      await expect(frame).toHaveAttribute('title', `${apps[i].name} live preview`)
-      await expect(frame).toHaveAttribute('src', apps[i].href)
+      if (apps[i].status === 'coming-soon') {
+        await expect(frame).toHaveCount(0)
+        await expect(spotlight.locator('.app-frame__coming-soon')).toHaveText('Coming soon')
+        await expect(spotlight.locator('.app-button--disabled')).toHaveText('Coming soon')
+        await expect(spotlight.getByRole('link', { name: 'Open app' })).toHaveCount(0)
+      } else {
+        await expect(frame).toHaveAttribute('loading', 'lazy')
+        await expect(frame).toHaveAttribute('referrerPolicy', 'strict-origin-when-cross-origin')
+        await expect(frame).toHaveAttribute('title', `${apps[i].name} live preview`)
+        await expect(frame).toHaveAttribute('src', apps[i].href)
 
-      const openLink = spotlight.getByRole('link', { name: 'Open app' })
-      await expect(openLink).toHaveAttribute('href', apps[i].href)
-      await expect(openLink).toHaveAttribute('target', '_blank')
-      await expect(openLink).toHaveAttribute('rel', 'noopener noreferrer')
+        const openLink = spotlight.getByRole('link', { name: 'Open app' })
+        await expect(openLink).toHaveAttribute('href', apps[i].href)
+        await expect(openLink).toHaveAttribute('target', '_blank')
+        await expect(openLink).toHaveAttribute('rel', 'noopener noreferrer')
+      }
     }
   })
 
@@ -111,6 +118,7 @@ test.describe('Spotlights and previews', () => {
     })
 
     for (let i = 0; i < apps.length; i++) {
+      if (apps[i].status === 'coming-soon') continue
       const spotlight = page.locator('.spotlight').nth(i)
       await spotlight.scrollIntoViewIfNeeded()
       const origin = new URL(apps[i].href).origin

@@ -1,12 +1,12 @@
 # The Useful Corner
 
-The Useful Corner is a lightweight React/Vite landing page for three independent browser tools:
+The Useful Corner is a lightweight React/Vite landing page for two available browser tools and a third tool in development:
 
 - PDF Unlocker
 - Calculator
 - Text & Markdown Formatter
 
-It provides a single navigable home page with live app previews, direct “Open app” links, responsive spotlight sections, and a continuous ambient light field.
+It provides a single navigable home page with live previews for available tools, a blurred coming-soon teaser, direct “Open app” links, responsive spotlight sections, and a continuous ambient light field.
 
 ## Run locally
 

@@ -34,6 +34,12 @@ test.describe('Header navigation', () => {
       await expect(link).toHaveAttribute('href', `#${apps[i].id}`)
       await expect(link).toHaveAttribute('aria-label', `Go to ${apps[i].name}`)
       await expect(link.locator('.tooltip')).toHaveText(apps[i].name)
+      if (apps[i].status === 'coming-soon') {
+        await expect(link.locator('.icon-link__coming-soon')).toHaveText('?')
+        await expect(link.locator('img')).toHaveCount(0)
+      } else {
+        await expect(link.locator('img')).toHaveCount(1)
+      }
     }
 
     const headerActions = page.locator('.header-actions')

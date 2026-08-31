@@ -47,9 +47,9 @@ export function AboutCorner() {
         <button ref={closeRef} className="about-dialog__close" type="button" aria-label="Close about dialog" onClick={close}>×</button>
         <p className="about-dialog__eyebrow">A personal collection</p>
         <h2 id="about-heading">Useful things, kept tidy.</h2>
-        <p className="about-dialog__intro">Three independent browser tools for the fiddly jobs that interrupt a good day.</p>
+        <p className="about-dialog__intro">Two independent browser tools for the fiddly jobs that interrupt a good day, with another on the way.</p>
         <div className="about-dialog__grid">
-          <div><h3>In the corner</h3><ul><li>PDF Unlocker</li><li>Percentage Calculator</li><li>Text &amp; Markdown Formatter</li></ul></div>
+          <div><h3>In the corner</h3><ul><li>PDF Unlocker</li><li>Percentage Calculator</li><li>Text &amp; Markdown Formatter <small>(coming soon)</small></li></ul></div>
           <div><h3>Tech stack</h3><ul><li>React + Vite</li><li>Responsive CSS</li><li>Lazy-loaded live previews</li><li>Static client-side hosting</li></ul></div>
           <div><h3>Privacy &amp; architecture</h3><ul><li>100% client-side tools</li><li>Files stay on your device</li><li>No account or cloud upload</li><li>Independent deployments</li></ul></div>
           <div><h3>Features</h3><ul><li>Live app previews</li><li>Responsive layouts</li><li>Keyboard-friendly controls</li><li>Thoughtful motion and focus states</li></ul></div>

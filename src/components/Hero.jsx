@@ -56,5 +56,5 @@ export function Hero() {
     }
   }, [])
 
-  return <section id="top" className="hero hero--initial hero--pending" aria-labelledby="hero-title" ref={heroRef}><div className="hero-copy"><p className="kicker">A handy place for handy things</p><h1 id="hero-title">Three useful tools. One tidy corner.</h1><p className="hero-intro">Free up a PDF, find the number you need, or turn messy text into something polished. Pick a tool and get on with your day.</p><a className="text-link" href="#showcase">Meet the tools <span aria-hidden="true">↓</span></a></div><div className="hero-art" aria-hidden="true"><span className="hero-wedge" /><p>Useful<br />by design.</p></div></section>
+  return <section id="top" className="hero hero--initial hero--pending" aria-labelledby="hero-title" ref={heroRef}><div className="hero-copy"><p className="kicker">A handy place for handy things</p><h1 id="hero-title">Useful tools. One tidy corner.</h1><p className="hero-intro">Free up a PDF, find the number you need, or peek at what’s coming next. Pick a tool and get on with your day.</p><a className="text-link" href="#showcase">Meet the tools <span aria-hidden="true">↓</span></a></div><div className="hero-art" aria-hidden="true"><span className="hero-wedge" /><p>Useful<br />by design.</p></div></section>
 }
