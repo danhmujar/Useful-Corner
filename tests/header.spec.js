@@ -74,6 +74,103 @@ test.describe('Header navigation', () => {
     await expect(icons.nth(2)).toHaveAttribute('aria-current', 'location')
     await expect(second).not.toHaveClass(/is-active/)
   })
+
+  test('app navigation keeps the selected spotlight below the sticky header', async ({ page }) => {
+    await page.setViewportSize({ width: 1920, height: 900 })
+
+    await page.locator('.icon-link').first().click()
+    await page.waitForTimeout(700)
+
+    const positions = await page.locator('.spotlight').first().evaluate((spotlight) => ({
+      sectionTop: spotlight.getBoundingClientRect().top,
+      nextTop: spotlight.nextElementSibling.getBoundingClientRect().top,
+      headerBottom: document.querySelector('.site-header').getBoundingClientRect().bottom,
+    }))
+
+    expect(positions.sectionTop).toBeGreaterThanOrEqual(positions.headerBottom - 1)
+    expect(Math.abs(positions.sectionTop - positions.headerBottom)).toBeLessThanOrEqual(1)
+    expect(positions.nextTop).toBeGreaterThanOrEqual(900)
+  })
+
+  test('direct app hash navigation restores the selected spotlight after render', async ({ page }) => {
+    const directPage = await page.context().newPage()
+    await directPage.setViewportSize({ width: 1920, height: 900 })
+    await directPage.goto('/#unlocker')
+    await directPage.waitForTimeout(700)
+
+    const positions = await directPage.locator('#unlocker').evaluate((spotlight) => ({
+      sectionTop: spotlight.getBoundingClientRect().top,
+      heroBottom: document.querySelector('.hero').getBoundingClientRect().bottom,
+      headerBottom: document.querySelector('.site-header').getBoundingClientRect().bottom,
+    }))
+
+    await directPage.close()
+
+    expect(positions.sectionTop).toBeGreaterThanOrEqual(positions.headerBottom - 1)
+    expect(Math.abs(positions.sectionTop - positions.headerBottom)).toBeLessThanOrEqual(1)
+    expect(Math.abs(positions.heroBottom - positions.headerBottom)).toBeLessThanOrEqual(1)
+  })
+
+  test('formatter navigation brings the footer into the same viewport', async ({ page }) => {
+    test.skip((await page.evaluate(() => window.innerWidth)) <= 320, 'Short mobile viewports use the readable-flow fallback')
+
+    for (const viewport of [{ width: 1920, height: 900 }, { width: 2048, height: 1006 }]) {
+      await page.setViewportSize(viewport)
+      await page.goto('/')
+      await page.locator('.icon-link').nth(2).click()
+      await expect.poll(() => page.locator('#formatter').evaluate((spotlight) => {
+        const header = document.querySelector('.site-header').getBoundingClientRect()
+        return Math.abs(spotlight.getBoundingClientRect().top - header.bottom)
+      }), { timeout: 3000 }).toBeLessThanOrEqual(1)
+
+      const positions = await page.locator('#formatter').evaluate((spotlight) => {
+        const header = document.querySelector('.site-header').getBoundingClientRect()
+        const footer = document.querySelector('.site-footer').getBoundingClientRect()
+        const section = spotlight.getBoundingClientRect()
+        return {
+          sectionTop: section.top,
+          sectionBottom: section.bottom,
+          headerBottom: header.bottom,
+          footerTop: footer.top,
+          footerBottom: footer.bottom,
+          viewportBottom: window.innerHeight,
+        }
+      })
+
+      expect(Math.abs(positions.sectionTop - positions.headerBottom)).toBeLessThanOrEqual(1)
+      expect(positions.footerTop).toBeGreaterThanOrEqual(positions.sectionBottom - 1)
+      expect(positions.footerTop).toBeLessThan(positions.viewportBottom)
+      expect(positions.footerBottom).toBeGreaterThan(positions.footerTop)
+    }
+  })
+
+  test('direct formatter hash navigation brings the footer into the same viewport', async ({ page }) => {
+    const directPage = await page.context().newPage()
+    await directPage.setViewportSize({ width: 1920, height: 900 })
+    await directPage.goto('/#formatter')
+    await expect.poll(() => directPage.locator('#formatter').evaluate((spotlight) => {
+      const header = document.querySelector('.site-header').getBoundingClientRect()
+      return Math.abs(spotlight.getBoundingClientRect().top - header.bottom)
+    }), { timeout: 3000 }).toBeLessThanOrEqual(1)
+
+    const positions = await directPage.locator('#formatter').evaluate((spotlight) => {
+      const header = document.querySelector('.site-header').getBoundingClientRect()
+      const footer = document.querySelector('.site-footer').getBoundingClientRect()
+      const section = spotlight.getBoundingClientRect()
+      return {
+        sectionTop: section.top,
+        headerBottom: header.bottom,
+        footerTop: footer.top,
+        viewportBottom: window.innerHeight,
+      }
+    })
+
+    await directPage.close()
+
+    expect(Math.abs(positions.sectionTop - positions.headerBottom)).toBeLessThanOrEqual(1)
+    expect(positions.footerTop).toBeLessThan(positions.viewportBottom)
+  })
+
   test('all header controls meet 44px hit area', async ({ page }) => {
     for (const locator of [page.locator('.icon-link'), page.getByRole('button', { name: 'About', exact: true })]) {
       const count = await locator.count()

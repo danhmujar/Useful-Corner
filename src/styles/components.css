@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: space-between;
   height: var(--header-height);
-  padding-inline: max(24px, calc((100% - 1180px) / 2));
+  padding-inline: var(--page-inline);
   border-bottom: 1px solid rgba(221, 216, 224, 0.86);
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
@@ -183,7 +183,8 @@
   flex-direction: column;
   justify-content: center;
   width: min(540px, calc(100% - 48px));
-  margin-inline: max(24px, calc((100vw - 1180px) / 2));
+  margin-inline-start: var(--page-inline);
+  margin-inline-end: 24px;
   padding-block: clamp(28px, 7svh, 96px);
   opacity: 0;
   transform: translate3d(0, 16px, 0);
@@ -242,7 +243,7 @@
 .hero-art p {
   position: absolute;
   z-index: 1;
-  right: max(48px, calc((100vw - 1180px) / 2));
+  right: var(--page-inline);
   bottom: clamp(32px, 7svh, 78px);
   margin: 0;
   color: rgba(255, 255, 255, 0.8);
@@ -277,18 +278,28 @@
 
 .spotlight {
   position: relative;
-  padding: clamp(72px, 10vw, 144px) 24px;
-  scroll-margin-top: calc(var(--header-height) + 12px);
+  display: grid;
+  align-items: center;
+  min-height: 100svh;
+  padding: clamp(72px, 10vw, 144px) var(--page-inline);
+}
+
+.showcase > .spotlight:not(:last-child) {
+  min-height: calc(100svh - var(--header-height));
+}
+
+.showcase > .spotlight:last-child {
+  min-height: calc(100svh - var(--header-height) - var(--closing-footer-space));
+  padding-block: clamp(36px, 5svh, 72px);
 }
 
 .spotlight-inner {
   display: grid;
   grid-template-columns: minmax(260px, 0.85fr) minmax(300px, 1fr);
   align-items: center;
-  gap: clamp(48px, 9vw, 150px);
-  width: min(1060px, 100%);
-  margin: auto;
-  scroll-margin-top: 16px;
+  gap: clamp(64px, 6vw, 128px);
+  width: min(100%, 1680px);
+  margin-inline: auto;
 }
 
 .spotlight--reverse .spotlight-inner {
@@ -297,6 +308,7 @@
 
 .spotlight--reverse .app-frame {
   order: 2;
+  justify-self: end;
 }
 
 .spotlight--reverse .spotlight-copy {
@@ -314,14 +326,19 @@
 .app-frame {
   position: relative;
   display: grid;
-  width: min(100%, 480px);
-  aspect-ratio: 4 / 3;
+  width: min(100%, 640px);
+  justify-self: start;
+  aspect-ratio: 5 / 4;
   place-items: center;
   overflow: hidden;
   border: 2px solid currentColor;
   background: rgba(255, 255, 255, 0.58);
   box-shadow: var(--shadow);
   color: var(--magenta);
+}
+
+.showcase > .spotlight:last-child .app-frame {
+  width: min(100%, 560px);
 }
 
 .spotlight--purple .app-frame {
@@ -452,7 +469,7 @@
 }
 
 .spotlight-copy {
-  max-width: 550px;
+  width: min(100%, 840px);
 }
 
 .spotlight h2 {
@@ -529,7 +546,8 @@
   grid-template-columns: 1fr minmax(200px, 430px) auto;
   gap: 30px;
   align-items: start;
-  padding: 45px max(24px, calc((100% - 1180px) / 2));
+  min-height: var(--closing-footer-space);
+  padding: 45px var(--page-inline);
   background: var(--aubergine);
   color: rgba(255, 255, 255, 0.74);
   font-size: 0.95rem;
@@ -1036,6 +1054,19 @@
     gap: 42px;
   }
 
+  .showcase > .spotlight:not(:last-child) {
+    min-height: auto;
+  }
+
+  .showcase > .spotlight:last-child {
+    min-height: auto;
+    padding-block: 48px;
+  }
+
+  .showcase > .spotlight:last-child .spotlight-inner {
+    gap: 28px;
+  }
+
   .spotlight--reverse .app-frame,
   .spotlight--reverse .spotlight-copy {
     order: initial;
@@ -1105,6 +1136,14 @@
     padding-inline: 16px;
   }
 
+  .showcase > .spotlight:last-child {
+    padding-block: 32px;
+  }
+
+  .showcase > .spotlight:last-child .spotlight-inner {
+    gap: 24px;
+  }
+
   .spotlight h2 {
     font-size: clamp(2.25rem, 12vw, 3.25rem);
   }
@@ -1115,6 +1154,10 @@
 
   .app-frame {
     aspect-ratio: 4 / 3;
+  }
+
+  .showcase > .spotlight:last-child .app-frame {
+    width: min(100%, 360px);
   }
 
   .orb-shell:nth-child(n + 6) {

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { AmbientOrbField } from './components/AmbientOrbField'
 import { AppSpotlight } from './components/AppSpotlight'
 import { ErrorBoundary } from './components/ErrorBoundary'
@@ -10,6 +11,19 @@ import './styles/global.css'
 import './styles/components.css'
 
 function App() {
+  useEffect(() => {
+    const id = window.location.hash.slice(1)
+    if (!id || id === 'top') return undefined
+
+    const target = document.getElementById(id)
+    if (!target) return undefined
+
+    const frame = window.requestAnimationFrame(() => {
+      target.scrollIntoView({ block: 'start', behavior: 'auto' })
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [])
+
   return (
     <ErrorBoundary>
       <div className="site-shell">

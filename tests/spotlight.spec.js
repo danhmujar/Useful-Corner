@@ -56,6 +56,103 @@ test.describe('Spotlights and previews', () => {
       }
     }
   })
+
+  test('hero copy and art caption stay anchored inside their panels', async ({ page }) => {
+    for (const viewport of [{ width: 1280, height: 700 }, { width: 1920, height: 1080 }, { width: 2560, height: 1250 }]) {
+      await page.setViewportSize(viewport)
+      await page.reload()
+      await expect(page.locator('.hero')).toHaveClass(/is-visible/, { timeout: 2000 })
+
+      const insets = await page.locator('.hero').evaluate((hero) => {
+        const copy = hero.querySelector('.hero-copy').getBoundingClientRect()
+        const caption = hero.querySelector('.hero-art p').getBoundingClientRect()
+        const brand = document.querySelector('.brand').getBoundingClientRect()
+        return {
+          copyLeft: copy.left,
+          captionRight: window.innerWidth - caption.right,
+          brandLeft: brand.left,
+        }
+      })
+
+      expect(insets.copyLeft).toBeGreaterThanOrEqual(48)
+      expect(insets.copyLeft).toBeLessThanOrEqual(120)
+      expect(Math.abs(insets.copyLeft - insets.brandLeft)).toBeLessThanOrEqual(1)
+      // The document scrollbar sits outside the hero panel, reducing its viewport inset.
+      expect(insets.captionRight).toBeGreaterThanOrEqual(24)
+      expect(insets.captionRight).toBeLessThanOrEqual(120)
+    }
+  })
+
+  test('showcase and footer use the shared page inset', async ({ page }) => {
+    for (const viewport of [{ width: 1280, height: 700 }, { width: 1920, height: 1080 }, { width: 2560, height: 1250 }]) {
+      await page.setViewportSize(viewport)
+      await page.reload()
+
+      const insets = await page.locator('.site-shell').evaluate((shell) => {
+        const showcase = shell.querySelector('.spotlight')
+        const footer = shell.querySelector('.site-footer')
+        return {
+          showcase: Number.parseFloat(getComputedStyle(showcase).paddingInlineStart),
+          footer: Number.parseFloat(getComputedStyle(footer).paddingInlineStart),
+        }
+      })
+
+      expect(insets.showcase).toBe(insets.footer)
+    }
+  })
+
+  test('spotlight pairs are centered within the page on wide screens', async ({ page }) => {
+    for (const viewport of [{ width: 1920, height: 1080 }, { width: 2560, height: 1250 }]) {
+      await page.setViewportSize(viewport)
+      await page.reload()
+      await page.addStyleTag({ content: '.spotlight .app-frame { animation: none !important; transform: none !important; }' })
+      const firstSpotlight = page.locator('.spotlight').first()
+      await firstSpotlight.scrollIntoViewIfNeeded()
+      await expect(firstSpotlight).toHaveClass(/is-visible/, { timeout: 2000 })
+
+      const edges = await page.locator('.showcase').evaluate((showcase) => {
+        const inner = showcase.querySelector('.spotlight-inner').getBoundingClientRect()
+        const frames = showcase.querySelectorAll('.app-frame')
+        const first = frames[0].getBoundingClientRect()
+        const reversed = frames[1].getBoundingClientRect()
+        const viewportWidth = document.documentElement.clientWidth
+        return {
+          innerLeft: inner.left,
+          innerRight: viewportWidth - inner.right,
+          firstLeft: first.left,
+          firstWidth: first.width,
+          reversedRight: viewportWidth - reversed.right,
+        }
+      })
+
+      expect(Math.abs(edges.innerLeft - edges.innerRight)).toBeLessThanOrEqual(1)
+      expect(Math.abs(edges.firstLeft - edges.innerLeft)).toBeLessThanOrEqual(1)
+      expect(edges.firstWidth).toBeGreaterThanOrEqual(600)
+      expect(Math.abs(edges.reversedRight - edges.innerRight)).toBeLessThanOrEqual(1)
+    }
+  })
+
+  test('wide spotlights center in the space below the sticky header', async ({ page }) => {
+    for (const viewport of [{ width: 1920, height: 1080 }, { width: 2560, height: 1250 }]) {
+      await page.setViewportSize(viewport)
+      await page.reload()
+
+      const dimensions = await page.locator('.spotlight').first().evaluate((spotlight) => {
+        const copy = spotlight.querySelector('.spotlight-copy').getBoundingClientRect()
+        const headerHeight = document.querySelector('.site-header').getBoundingClientRect().height
+        return {
+          copyWidth: copy.width,
+          spotlightHeight: spotlight.getBoundingClientRect().height,
+          headerHeight,
+          expectedHeight: window.innerHeight - headerHeight,
+        }
+      })
+
+      expect(dimensions.copyWidth).toBeGreaterThanOrEqual(800)
+      expect(Math.abs(dimensions.spotlightHeight - dimensions.expectedHeight)).toBeLessThanOrEqual(1)
+    }
+  })
+
   test('hero and spotlight reveal replay on intersection', async ({ page }) => {
     const hero = page.locator('.hero')
     await expect(hero).toBeVisible()
