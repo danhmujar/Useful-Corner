@@ -14,6 +14,8 @@
 
 ## Plans and task history
 
+- [The Tidy Corner rename and deferred formatter launch plan](plans/2026-09-02-tidy-corner-rename-and-formatter-launch-plan.md) — phased Release 1 rename and separately gated Release 2 launch.
+- [The Tidy Corner rename and deferred formatter launch task list](tasks/2026-09-02-tidy-corner-rename-and-formatter-launch-task-list.md) — executable checklist with release and deployment gates.
 - [Landing page plan](plans/2026-08-28-useful-corner-landing-page-plan.md)
 - [Live showcase plan](plans/2026-08-28-live-showcase-preview-plan.md)
 - [Hero motion plan](plans/2026-08-29-hero-parallax-plan.md)
