@@ -1,6 +1,6 @@
 # The Tidy Corner rename and deferred formatter launch — task list
 
-**Status:** Release 1 local implementation complete; manual GitHub cutover pending; Release 2 deferred
+**Status:** Release 1 deployed; local workspace rename pending; Release 2 deferred
 **Specification:** `docs/specs/2026-09-02-tidy-corner-rename-and-formatter-launch-design.md`  
 **Plan:** `docs/plans/2026-09-02-tidy-corner-rename-and-formatter-launch-plan.md`
 
@@ -10,7 +10,7 @@
 - [x] Approved specification was written and committed.
 - [x] User reviews this implementation plan and task list.
 - [x] User explicitly authorizes Release 1 implementation.
-- [ ] User approves the verified Release 1 candidate for repository rename and deployment.
+- [x] User approves the verified Release 1 candidate for repository rename and deployment.
 
 ## Release 1 — Branch safety
 
@@ -62,20 +62,20 @@
 
 ## Release 1 — Repository and Pages cutover
 
-- [ ] Obtain user approval for the verified cutover candidate.
-- [ ] Rename the GitHub repository to `Tidy-Corner` in repository Settings.
-- [ ] Change local `origin` to `https://github.com/danhmujar/Tidy-Corner.git` only after the rename succeeds.
-- [ ] Verify the new remote with `git remote -v` and `git ls-remote --exit-code origin HEAD`.
-- [ ] Integrate the verified branch into `main` without discarding history.
-- [ ] Push `main` to trigger the existing GitHub Pages workflow.
-- [ ] Confirm the workflow deploys the intended Release 1 commit.
-- [ ] Open `https://danhmujar.github.io/Tidy-Corner/` in a clean browser session.
-- [ ] Verify direct entry and header/hash navigation.
-- [ ] Verify scripts, styles, favicon, and app icons resolve from `/Tidy-Corner/`.
-- [ ] Verify PDF Unlocker and Calculator previews and Open app links.
-- [ ] Verify the formatter still has no live preview or Open app link.
-- [ ] Verify the About dialog, keyboard flow, and browser console.
-- [ ] Record the old `/Useful-Corner/` result without requiring a redirect.
+- [x] Obtain user approval for the verified cutover candidate.
+- [x] Rename the GitHub repository to `Tidy-Corner` in repository Settings.
+- [x] Change local `origin` to `https://github.com/danhmujar/Tidy-Corner.git` only after the rename succeeds.
+- [x] Verify the new remote with `git remote -v` and `git ls-remote --exit-code origin HEAD`.
+- [x] Integrate the verified branch into `main` without discarding history.
+- [x] Push `main` to trigger the existing GitHub Pages workflow.
+- [x] Confirm the workflow deploys the intended Release 1 commit.
+- [x] Open `https://danhmujar.github.io/Tidy-Corner/` in a clean browser session.
+- [x] Verify direct entry and header/hash navigation.
+- [x] Verify scripts, styles, favicon, and app icons resolve from `/Tidy-Corner/`.
+- [x] Verify PDF Unlocker and Calculator previews and Open app links.
+- [x] Verify the formatter still has no live preview or Open app link.
+- [x] Verify the About dialog, keyboard flow, and browser console.
+- [x] Record the old `/Useful-Corner/` result without requiring a redirect.
 
 ## Release 1 — Local workspace rename
 
@@ -83,7 +83,7 @@
 - [ ] From `C:\AI\Project`, rename `Useful-Corner` to `Tidy-Corner` with PowerShell `Rename-Item -LiteralPath`.
 - [ ] Reopen the workspace from `C:\AI\Project\Tidy-Corner`.
 - [ ] Verify the reopened worktree status and renamed remote.
-- [ ] Mark Release 1 complete only after all applicable acceptance criteria pass.
+- [ ] Mark Release 1 complete after the active workspace is safely renamed and reopened.
 
 ## HARD STOP — Release 2 prerequisites
 
@@ -140,15 +140,15 @@ Do not check or execute any item below until every prerequisite above is complet
 
 ## Final acceptance audit
 
-- [ ] AC 1 — Public brand surfaces identify the site as The Tidy Corner.
-- [ ] AC 2 — Generic descriptive uses of “useful” remain intact.
-- [ ] AC 3 — Package manifest and lockfile use `tidy-corner`.
+- [x] AC 1 — Public brand surfaces identify the site as The Tidy Corner.
+- [x] AC 2 — Generic descriptive uses of “useful” remain intact.
+- [x] AC 3 — Package manifest and lockfile use `tidy-corner`.
 - [ ] AC 4 — Repository, remote, and safe local workspace rename are complete.
-- [ ] AC 5 — `/Tidy-Corner/` and its deployed assets load successfully.
-- [ ] AC 6 — Release 1 retained the formatter Coming soon state.
-- [ ] AC 7 — Release 1 preserved responsive layout and behavior.
-- [ ] AC 8 — Active and historical documentation are correctly distinguished.
-- [ ] AC 9 — No old Pages redirect is required.
+- [x] AC 5 — `/Tidy-Corner/` and its deployed assets load successfully.
+- [x] AC 6 — Release 1 retained the formatter Coming soon state.
+- [x] AC 7 — Release 1 preserved responsive layout and behavior.
+- [x] AC 8 — Active and historical documentation are correctly distinguished.
+- [x] AC 9 — No old Pages redirect is required.
 - [ ] AC 10 — Release 2 waited for public release and explicit authorization.
 - [ ] AC 11 — Release 2 used the existing app-data path without restoring old layout.
 - [ ] AC 12 — Release 2 exposes the formatter icon, preview, link, and three-tool copy.
