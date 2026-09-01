@@ -1,6 +1,6 @@
-# The Useful Corner
+# The Tidy Corner
 
-The Useful Corner is a lightweight React/Vite landing page for two available browser tools and a third tool in development:
+The Tidy Corner is a lightweight React/Vite landing page for two available browser tools and a third tool in development:
 
 - PDF Unlocker
 - Calculator
@@ -39,9 +39,9 @@ npm run test:e2e:prod
 ## GitHub Pages deployment
 
 The repository workflow publishes the production build to
-https://danhmujar.github.io/Useful-Corner/ when changes land on `main`.
+https://danhmujar.github.io/Tidy-Corner/ when changes land on `main`.
 
-The Vite base path is set to `/Useful-Corner/` for this repository site. If a custom domain is added later, change the base back to `/`.
+The Vite base path is set to `/Tidy-Corner/` for this repository site. If a custom domain is added later, change the base back to `/`.
 
 GitHub Pages is configured to use GitHub Actions as its publishing source.
 

@@ -1,6 +1,6 @@
 # The Tidy Corner rename and deferred formatter launch — task list
 
-**Status:** Release 1 planned; Release 2 deferred  
+**Status:** Release 1 local implementation complete; manual GitHub cutover pending; Release 2 deferred
 **Specification:** `docs/specs/2026-09-02-tidy-corner-rename-and-formatter-launch-design.md`  
 **Plan:** `docs/plans/2026-09-02-tidy-corner-rename-and-formatter-launch-plan.md`
 
@@ -8,57 +8,57 @@
 
 - [x] User approved the design and acceptance criteria.
 - [x] Approved specification was written and committed.
-- [ ] User reviews this implementation plan and task list.
-- [ ] User explicitly authorizes Release 1 implementation.
+- [x] User reviews this implementation plan and task list.
+- [x] User explicitly authorizes Release 1 implementation.
 - [ ] User approves the verified Release 1 candidate for repository rename and deployment.
 
 ## Release 1 — Branch safety
 
-- [ ] Fetch `origin` and record the current status, graph, and `git cherry` relationship to `origin/main`.
-- [ ] Confirm there are no unrelated working-tree edits.
-- [ ] Create and verify a backup ref for the pre-cutover branch.
-- [ ] Confirm the cached patch-equivalent formatter commit relationship still holds after fetch.
-- [ ] Reconcile the branch onto current `origin/main` without duplicating or discarding commits.
-- [ ] Confirm the responsive layout, specification, plan, and task-list commits each remain present once.
+- [x] Fetch `origin` and record the current status, graph, and `git cherry` relationship to `origin/main`.
+- [x] Confirm there are no unrelated working-tree edits.
+- [x] Create and verify a backup ref for the pre-cutover branch.
+- [x] Confirm the cached patch-equivalent formatter commit relationship still holds after fetch.
+- [x] Reconcile the branch onto current `origin/main` without duplicating or discarding commits.
+- [x] Confirm the responsive layout, specification, plan, and task-list commits each remain present once.
 
 ## Release 1 — Public and technical rename
 
-- [ ] Change the package name to `tidy-corner` in `package.json`.
-- [ ] Change both root package identities to `tidy-corner` in `package-lock.json` without updating dependencies.
-- [ ] Change only the production Vite base path to `/Tidy-Corner/`.
-- [ ] Rename the document-title brand prefix to The Tidy Corner.
-- [ ] Rename the noscript heading to The Tidy Corner while keeping the formatter coming soon.
-- [ ] Rename the visible and accessible header brand to The Tidy Corner.
-- [ ] Rename the footer title to The Tidy Corner.
-- [ ] Rename the favicon accessible label without redesigning the asset.
-- [ ] Preserve generic descriptive uses of “useful.”
-- [ ] Keep `status: 'coming-soon'` on the formatter record.
-- [ ] Keep two-live/one-upcoming copy unchanged during Release 1.
+- [x] Change the package name to `tidy-corner` in `package.json`.
+- [x] Change both root package identities to `tidy-corner` in `package-lock.json` without updating dependencies.
+- [x] Change only the production Vite base path to `/Tidy-Corner/`.
+- [x] Rename the document-title brand prefix to The Tidy Corner.
+- [x] Rename the noscript heading to The Tidy Corner while keeping the formatter coming soon.
+- [x] Rename the visible and accessible header brand to The Tidy Corner.
+- [x] Rename the footer title to The Tidy Corner.
+- [x] Rename the favicon accessible label without redesigning the asset.
+- [x] Preserve generic descriptive uses of “useful.”
+- [x] Keep `status: 'coming-soon'` on the formatter record.
+- [x] Keep two-live/one-upcoming copy unchanged during Release 1.
 
 ## Release 1 — Tests and active documentation
 
-- [ ] Update the header brand assertion to The Tidy Corner.
-- [ ] Add focused assertions for the page-title prefix and footer brand.
-- [ ] Confirm existing data-driven tests still prove the formatter has no iframe or Open app link.
-- [ ] Update the README product name, repository URL, and `/Tidy-Corner/` base path.
-- [ ] Update the active project identity in `AGENTS.md`.
-- [ ] Add the implementation plan and task list to `docs/INDEX.md`.
-- [ ] Keep dated pre-rename documents and filenames unchanged.
-- [ ] Audit remaining old-name and old-path matches and classify every retained result as historical or migration documentation.
+- [x] Update the header brand assertion to The Tidy Corner.
+- [x] Add focused assertions for the page-title prefix and footer brand.
+- [x] Confirm existing data-driven tests still prove the formatter has no iframe or Open app link.
+- [x] Update the README product name, repository URL, and `/Tidy-Corner/` base path.
+- [x] Update the active project identity in `AGENTS.md`.
+- [x] Add the implementation plan and task list to `docs/INDEX.md`.
+- [x] Keep dated pre-rename documents and filenames unchanged.
+- [x] Audit remaining old-name and old-path matches and classify every retained result as historical or migration documentation.
 
 ## Release 1 — Local verification
 
-- [ ] Run `npm run build`.
-- [ ] Run `npm run lint`.
-- [ ] Run `npm run test:e2e -- --reporter=line`.
-- [ ] Run `npm run test:e2e:prod -- --reporter=line`.
-- [ ] Run `git diff --check`.
-- [ ] Inspect `dist/index.html` for `/Tidy-Corner/` asset paths.
-- [ ] Confirm the preview-mode tests still serve from `/`.
-- [ ] Confirm both live previews load under the CSP.
-- [ ] Confirm the formatter remains Coming soon.
-- [ ] Confirm the formatter/footer same-viewport and mobile readable-flow checks remain passing.
-- [ ] Review the final Release 1 diff for scope creep.
+- [x] Run `npm run build`.
+- [x] Run `npm run lint`.
+- [x] Run `npm run test:e2e -- --reporter=line`.
+- [x] Run `npm run test:e2e:prod -- --reporter=line`.
+- [x] Run `git diff --check`.
+- [x] Inspect `dist/index.html` for `/Tidy-Corner/` asset paths.
+- [x] Confirm the preview-mode tests still serve from `/`.
+- [x] Confirm both live previews load under the CSP.
+- [x] Confirm the formatter remains Coming soon.
+- [x] Confirm the formatter/footer same-viewport and mobile readable-flow checks remain passing.
+- [x] Review the final Release 1 diff for scope creep.
 
 ## Release 1 — Repository and Pages cutover
 

@@ -1,8 +1,8 @@
-# Useful Corner Agent Guide
+# The Tidy Corner Agent Guide
 
 ## Purpose
 
-This repository contains the Useful Corner React/Vite landing page. It is a navigation surface for three independently deployed tools, not the tools themselves.
+This repository contains The Tidy Corner React/Vite landing page. It is a navigation surface for three independently deployed tools, not the tools themselves.
 
 ## Commands
 

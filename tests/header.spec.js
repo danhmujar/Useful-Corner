@@ -19,9 +19,11 @@ test.describe('Header navigation', () => {
   })
 
   test('brand and icon nav have accessible names and correct order', async ({ page }) => {
-    const brand = page.getByRole('link', { name: /The Useful Corner/ })
+    const brand = page.getByRole('link', { name: /The Tidy Corner/ })
     await expect(brand).toBeVisible()
     await expect(brand).toHaveAttribute('href', '#top')
+    await expect(page).toHaveTitle(/The Tidy Corner/)
+    await expect(page.locator('.footer-title')).toHaveText('The Tidy Corner')
 
     const nav = page.getByRole('navigation', { name: 'Jump to a tool' })
     await expect(nav).toBeVisible()
